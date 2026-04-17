@@ -139,20 +139,9 @@ Screenshot showing the flow rules installed in s1 (before and after link recover
 
 ---
 
-### **What Screenshots to Include:**
+<img width="2485" height="931" alt="image" src="https://github.com/user-attachments/assets/a1a98a5f-fcaa-4697-87fd-be9591035d36" />
+<img width="1825" height="1128" alt="image" src="https://github.com/user-attachments/assets/4febb7ee-2202-435d-8d1b-366cbdc6807a" />
+<img width="1688" height="723" alt="image" src="https://github.com/user-attachments/assets/137fc8b3-ec66-4c90-af8a-e9de036ecdb8" />
 
-1. **Wireshark Logs**:
-   - **Before Link Failure**: Show traffic capture between **h1** and **h2**.
-   - **During Link Failure**: Show **no traffic** between **h1** and **h2**.
-   - **After Link Recovery**: Show the traffic resumes between **h1** and **h2**.
 
-2. **POX Logs**:
-   - Screenshot showing logs for **link failure detection** and **flow rule installation**.
 
-3. **pingall Output**:
-   - Before, during, and after the link failure (to show **0/2 received** during failure and **2/2 received** after recovery).
-
-4. **Flow Table Dump**:
-   - Screenshot of flow entries in **s1** before and after link recovery.
-
----
