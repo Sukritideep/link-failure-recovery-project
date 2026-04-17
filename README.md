@@ -20,28 +20,36 @@ This project demonstrates **link failure detection and recovery** in a **Softwar
    Run the following command to start the POX controller with the **link failure recovery** script:
    ```bash
    python3 ~/pox/pox.py link_failure_recovery
+   ```
 3. Start Mininet:
 
 In a separate terminal, start Mininet with POX as the remote controller:
+```bash
 
 sudo mn --controller=remote,ip=127.0.0.1,port=6633
+```
 4. Test Link Failure and Recovery:
 
 Run the following commands in Mininet CLI to simulate a link failure and recovery:
 
 Before Link Failure:
-
+```bash
 pingall
+```
 
 Simulate Link Failure:
+```bash
 
 link h1 s1 down
 pingall
+```
 
 Recover the Link:
+```bash
 
 link h1 s1 up
 pingall
+```
 
 Expected Outcome:
 
@@ -62,20 +70,23 @@ Capture the network throughput before, during, and after the link failure using 
 Example Output:
 
 Before Link Failure:
+```bash
 
 h1 -> h2: 2/2 packets received
-
+```
 During Link Failure:
-
+```bash
 h1 -> h2: 0/2 packets received
-
+```
 After Link Recovery:
-
+```bash
 h1 -> h2: 2/2 packets received
+```
 Code Explanation
 link_failure_recovery.py:
 
 This script uses POX to handle OpenFlow events and detect link failures using the Discovery module. When a link failure is detected, POX automatically installs flow rules to reroute traffic and recover connectivity.
+```bash
 
 from pox.core import core
 from pox.lib.revent import *
@@ -114,30 +125,10 @@ def launch():
     if not core.hasComponent("openflow_discovery"):
         from pox.openflow.discovery import launch as dl
         dl()
-    core.registerNew(LinkFailureRecovery)
-Proof of Execution
-Link Failure and Recovery Test:
-Screenshot: Show the results of pingall before, during, and after the failure.
-Flow Table Dump:
-Screenshot: Run dpctl dump-flows to show the flow entries before and after the link failure.
-What Screenshots to Include in the Repository:
-Wireshark Screenshots:
-Before Link Failure: Capture the traffic between h1 and h2 in Wireshark.
-During Link Failure: No traffic should be visible for h1 and h2.
-After Link Recovery: Traffic should resume, showing successful packet transfer.
-POX Logs Screenshots:
-Capture logs from POX that show:
-Link failure detection.
-Flow rule installation.
-Mininet Screenshots:
-pingall output before, during, and after the link failure:
-2/2 received before failure.
-0/2 received during failure.
-2/2 received after recovery.
-Flow Table (dpctl dump-flows):
-Screenshot showing the flow rules installed in s1 (before and after link recovery).
 
----
+    core.registerNew(LinkFailureRecovery)
+```
+
 
 <img width="2485" height="931" alt="image" src="https://github.com/user-attachments/assets/a1a98a5f-fcaa-4697-87fd-be9591035d36" />
 <img width="1825" height="1128" alt="image" src="https://github.com/user-attachments/assets/4febb7ee-2202-435d-8d1b-366cbdc6807a" />
