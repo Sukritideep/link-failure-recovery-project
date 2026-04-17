@@ -19,7 +19,7 @@ This project demonstrates **link failure detection and recovery** in a **Softwar
 
    Run the following command to start the POX controller with the **link failure recovery** script:
    ```bash
-   python3 ~/pox/pox.py link_failure_recovery
+   python3 pox/pox.py link_failure_recovery
    ```
 3. Start Mininet:
 
